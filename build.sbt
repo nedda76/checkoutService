@@ -1,6 +1,6 @@
 name := "checkoutService"
 
-version := "1.0-SNAPSHOT"
+version := "1.0-Step1"
 
 libraryDependencies ++= Seq(
   jdbc,

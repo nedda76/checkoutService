@@ -44,5 +44,26 @@ class ApplicationSpec extends Specification with PriceCalculator {
       price mustEqual 0.25
       calculateItemTotal(10, price) mustEqual 2.50
     }
+
+    "apply correctly 3 for 2 discount for 5 oranges" in new WithApplication() {
+      val fruitItems = "Orange,Apple,Orange,Orange"
+      val fruitList = fruitItems.split(",").toList
+      val oranges = fruitList.filter(_ startsWith "O")
+
+      val orangesTotal = calculateItemTotal(threeForTwo(oranges.length), priceForOranges)
+
+      orangesTotal mustEqual 0.50
+    }
+
+    "apply correctly 2 for 1 discount for 4 apples" in new WithApplication() {
+      val fruitItems = "Apple,Apple,Apple,apple,Orange"
+      val fruitList = fruitItems.split(",").toList
+      val apples = fruitList.filter(_ startsWith "A")
+
+      val applesTotal = calculateItemTotal(twoForOne(apples.length), priceForApples)
+
+      applesTotal mustEqual 1.20
+    }
+
   }
 }

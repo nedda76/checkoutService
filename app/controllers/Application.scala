@@ -4,7 +4,6 @@ import play.api._
 import play.api.mvc._
 import services.PriceCalculator
 
-
 object Application extends Controller with PriceCalculator {
 
   def checkout(fruitItems: String) = Action {
@@ -12,10 +11,13 @@ object Application extends Controller with PriceCalculator {
     // Convert to List
     val fruitList = fruitItems.toUpperCase().split(",").toList
 
-    // Calculate the individual item totals
-    val orangesTotal = calculateItemTotal(fruitList.filter(_ startsWith "O").length, priceForOranges)
+    val apples = fruitList.filter(_ startsWith "A")
+    val oranges = fruitList.filter(_ startsWith "O")
 
-    val applesTotal = calculateItemTotal(fruitList.filter(_ startsWith "A").length, priceForApples)
+    // Calculate the individual item totals - calculate count based on discount
+    val orangesTotal = calculateItemTotal(threeForTwo(oranges.length), priceForOranges)
+
+    val applesTotal = calculateItemTotal(twoForOne(apples.length), priceForApples)
 
     // Combined total
     val total = orangesTotal+applesTotal
