@@ -1,0 +1,9 @@
+# Routes for the checkoutService application
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Checkout with a list of items
+GET     /total/:fruitItems          controllers.Application.checkout(fruitItems)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
