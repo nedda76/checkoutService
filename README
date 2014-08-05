@@ -1,4 +1,12 @@
-This is your new Play application
-=====================================
+A checkout application for a Shopping Cart
+==========================================
 
-This file will be packaged with your application, when using `play dist`.
+This application exposes a RESTful API with one end-point which provides checkout functionality for the Shopping Cart
+of a store.
+
+It can be called via any REST client in this way:
+
+http://localhost:9000/total/orange,apple
+
+The only items it recognises are orange and apple separated by commas as shown, case insensitive.
+
